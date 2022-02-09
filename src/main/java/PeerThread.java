@@ -8,9 +8,11 @@ import java.net.Socket;
 public class PeerThread extends Thread{
 
     private final BufferedReader reader;
+    private Socket socket;
 
     public PeerThread(Socket socket) throws IOException {
         this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        this.socket = socket;
     }
 
     public void run() {
@@ -28,5 +30,9 @@ public class PeerThread extends Thread{
                 break;
             }
         }
+    }
+
+    public Socket getSocket() {
+        return this.socket;
     }
 }
